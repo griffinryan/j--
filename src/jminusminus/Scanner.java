@@ -83,7 +83,7 @@ class Scanner {
      * @return the next scanned token.
      */
     public TokenInfo getNextToken() {
-        StringBuffer buffer;
+        StringBuffer buffer = new StringBuffer();
         boolean moreWhiteSpace = true;
         while (moreWhiteSpace) {
             while (isWhitespace(ch)) {
@@ -120,6 +120,73 @@ class Scanner {
                 moreWhiteSpace = false;
             }
         }
+        // Reset for next tokens.
+        buffer.setLength(0);
+
+        // Check for double precision literals.
+        if (isDigit(ch) || ch == '.') {
+            boolean hasDecimal = false;
+            boolean hasExponent = false;
+            boolean isFloat = false;
+            boolean isLong = false;
+
+            // Accumulate digits and decimal point
+            do {
+                if (ch == '.') {
+                    if (hasDecimal) break; // Second decimal point, break
+                    hasDecimal = true;
+                } else if (ch == 'e' || ch == 'E') {
+                    if (hasExponent) break; // Second exponent, break
+                    hasExponent = true;
+                    buffer.append(ch);
+                    nextCh();
+                    if (ch == '+' || ch == '-') {
+                        buffer.append(ch); // Include the sign of the exponent
+                        nextCh();
+                    }
+                    continue;
+                }
+                buffer.append(ch);
+                nextCh();
+            } while (isDigit(ch) || (!hasDecimal && ch == '.') || (!hasExponent && (ch == 'e' || ch == 'E')));
+
+            // Check for float or long literals
+            if (ch == 'f' || ch == 'F') {
+                isFloat = true;
+                nextCh();  // Consume the 'f' or 'F'
+            } else if (ch == 'l' || ch == 'L') {
+                isLong = true;
+                nextCh();  // Consume the 'l' or 'L'
+            }
+
+            // Return the appropriate literal type
+            if (isFloat) {
+                return new TokenInfo(FLOAT_LITERAL, buffer.toString(), line);
+            } else if (isLong) {
+                return new TokenInfo(LONG_LITERAL, buffer.toString(), line);
+            } else if (hasDecimal || hasExponent) {
+                return new TokenInfo(DOUBLE_LITERAL, buffer.toString(), line);
+            } else {
+                return new TokenInfo(INT_LITERAL, buffer.toString(), line);
+            }
+        }
+        buffer.setLength(0);
+        // Check for reserved words and other tokens
+        if (isIdentifierStart(ch)) {
+            while (isIdentifierPart(ch)) {
+                buffer.append(ch);
+                nextCh();
+            }
+            String identifier = buffer.toString();
+            if (reserved.containsKey(identifier)) {
+                // If it's a reserved word, return the corresponding token
+                return new TokenInfo(reserved.get(identifier), line);
+            } else {
+                // If it's not a reserved word, it's a regular identifier
+                return new TokenInfo(IDENTIFIER, identifier, line);
+            }
+        }
+
         line = input.line();
         switch (ch) {
             case ',':
