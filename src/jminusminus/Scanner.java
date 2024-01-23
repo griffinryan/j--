@@ -130,6 +130,37 @@ class Scanner {
             boolean isFloat = false;
             boolean isLong = false;
 
+            if (ch == '0') {
+                buffer.append(ch);
+                nextCh();
+                if (ch == 'x' || ch == 'X') {
+                    // Hexadecimal
+                    buffer.append(ch);
+                    nextCh();
+                    while (isHexDigit(ch)) {
+                        buffer.append(ch);
+                        nextCh();
+                    }
+                    return new TokenInfo(INT_LITERAL, buffer.toString(), line);
+                } else if (ch == 'b' || ch == 'B') {
+                    // Binary
+                    buffer.append(ch);
+                    nextCh();
+                    while (ch == '0' || ch == '1') {
+                        buffer.append(ch);
+                        nextCh();
+                    }
+                    return new TokenInfo(INT_LITERAL, buffer.toString(), line);
+                } else if (isOctalDigit(ch)) {
+                    // Octal
+                    while (isOctalDigit(ch)) {
+                        buffer.append(ch);
+                        nextCh();
+                    }
+                    return new TokenInfo(INT_LITERAL, buffer.toString(), line);
+                }
+                // If it's just '0', it's a decimal 0
+            }
             // Accumulate digits and decimal point
             do {
                 if (ch == '.') {
@@ -445,6 +476,14 @@ class Scanner {
     // otherwise.
     private boolean isIdentifierPart(char c) {
         return (isIdentifierStart(c) || isDigit(c));
+    }
+
+    private boolean isHexDigit(char c) {
+        return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F');
+    }
+
+    private boolean isOctalDigit(char c) {
+        return c >= '0' && c <= '7';
     }
 }
 
