@@ -189,20 +189,53 @@ class JDivideOp extends JBinaryExpression {
     }
 
     /**
-     * {@inheritDoc}
+     * Analyzes the lhs and rhs operands to determine their types, apply type promotion,
+     * and set the type for this expression.
      */
+    @Override
     public JExpression analyze(Context context) {
-        // TODO
+        // Analyze lhs and rhs to resolve their types
+        lhs = lhs.analyze(context);
+        rhs = rhs.analyze(context);
+
+        // Apply type promotion rules
+        if (lhs.type().equals(Type.DOUBLE) || rhs.type().equals(Type.DOUBLE)) {
+            type = Type.DOUBLE; // Promote to double if either operand is double
+        } else if (lhs.type().equals(Type.FLOAT) || rhs.type().equals(Type.FLOAT)) {
+            type = Type.FLOAT; // Promote to float if either operand is float
+        } else {
+            type = Type.INT; // Default to int for division (assuming no longs for simplicity)
+        }
+
+        // Ensure operands are of compatible types
+        lhs.type().mustMatchExpected(line(), type);
+        rhs.type().mustMatchExpected(line(), type);
+
         return this;
     }
 
     /**
-     * {@inheritDoc}
+     * Generates JVM bytecode for performing the division operation.
      */
     public void codegen(CLEmitter output) {
-        // TODO
+        // Assume type has been analyzed and set correctly
+        lhs.codegen(output);
+        rhs.codegen(output);
+
+        if (type.equals(Type.INT)) {
+            output.addNoArgInstruction(IDIV);
+        } else if (type.equals(Type.FLOAT)) {
+            output.addNoArgInstruction(FDIV);
+        } else if (type.equals(Type.DOUBLE)) {
+            output.addNoArgInstruction(DDIV);
+        } else {
+            // Potentially throw an exception or handle the case where type is not supported
+            throw new IllegalStateException("Unsupported type for division: " + type);
+        }
     }
+
 }
+
 
 /**
  * The AST node for a remainder (%) expression.
@@ -211,7 +244,7 @@ class JRemainderOp extends JBinaryExpression {
     /**
      * Constructs an AST node for a remainder expression.
      *
-     * @param line line in which the division expression occurs in the source file.
+     * @param line line in which the remainder expression occurs in the source file.
      * @param lhs  the lhs operand.
      * @param rhs  the rhs operand.
      */
@@ -220,29 +253,63 @@ class JRemainderOp extends JBinaryExpression {
     }
 
     /**
-     * {@inheritDoc}
+     * Analyzes the lhs and rhs operands to determine their types, apply type promotion,
+     * and set the type for this expression based on Java's type promotion rules.
      */
+    @Override
     public JExpression analyze(Context context) {
-        // TODO
+        lhs = lhs.analyze(context);
+        rhs = rhs.analyze(context);
+
+        // Apply type promotion and ensure operands are compatible
+        if (lhs.type().equals(Type.DOUBLE) || rhs.type().equals(Type.DOUBLE)) {
+            type = Type.DOUBLE;
+        } else if (lhs.type().equals(Type.FLOAT) || rhs.type().equals(Type.FLOAT)) {
+            type = Type.FLOAT;
+        } else {
+            // Default to int if no floating-point types are involved
+            type = Type.INT;
+        }
+
+        // Ensure operands are of compatible types
+        lhs.type().mustMatchExpected(line(), type);
+        rhs.type().mustMatchExpected(line(), type);
+
         return this;
     }
 
     /**
-     * {@inheritDoc}
+     * Generates JVM bytecode for performing the remainder operation.
      */
+    @Override
     public void codegen(CLEmitter output) {
-        // TODO
+        // Generate code for evaluating the lhs and rhs expressions
+        lhs.codegen(output);
+        rhs.codegen(output);
+
+        // Emit the appropriate remainder instruction based on the type
+        if (type.equals(Type.INT)) {
+            output.addNoArgInstruction(IREM);
+        } else if (type.equals(Type.FLOAT)) {
+            output.addNoArgInstruction(FREM);
+        } else if (type.equals(Type.DOUBLE)) {
+            output.addNoArgInstruction(DREM);
+        } else {
+            // Handle error or unexpected type
+            throw new IllegalStateException("Unsupported type for remainder: " + type);
+        }
     }
 }
+
 
 /**
  * The AST node for an inclusive or (|) expression.
  */
 class JOrOp extends JBinaryExpression {
     /**
-     * Constructs an AST node for an inclusive or expression.
+     * Constructs an AST node for an inclusive OR expression.
      *
-     * @param line line in which the inclusive or expression occurs in the source file.
+     * @param line line in which the inclusive OR expression occurs in the source file.
      * @param lhs  the lhs operand.
      * @param rhs  the rhs operand.
      */
@@ -251,29 +318,60 @@ class JOrOp extends JBinaryExpression {
     }
 
     /**
-     * {@inheritDoc}
+     * Analyzes the lhs and rhs operands to determine their types, apply type promotion,
+     * and set the type for this expression based on the operation's rules.
      */
+    @Override
     public JExpression analyze(Context context) {
-        // TODO
+        lhs = lhs.analyze(context);
+        rhs = rhs.analyze(context);
+
+        // Assuming | operation is for integers (and possibly longs) for bitwise OR
+        if (lhs.type().equals(Type.INT) && rhs.type().equals(Type.INT)) {
+            type = Type.INT;
+        } else if (lhs.type().equals(Type.LONG) || rhs.type().equals(Type.LONG)) {
+            // Promote to long if either operand is long
+            type = Type.LONG;
+        } else {
+            JAST.compilationUnit.reportSemanticError(line(),
+                    "Invalid operand types for | operator");
+            // Set to ANY to avoid further errors in case of invalid types
+            type = Type.ANY;
+        }
+
         return this;
     }
 
     /**
-     * {@inheritDoc}
+     * Generates JVM bytecode for performing the inclusive OR operation.
      */
+    @Override
     public void codegen(CLEmitter output) {
-        // TODO
+        // Generate code for evaluating the lhs and rhs expressions
+        lhs.codegen(output);
+        rhs.codegen(output);
+
+        // Emit the appropriate inclusive OR instruction based on the type
+        if (type.equals(Type.INT)) {
+            output.addNoArgInstruction(IOR);
+        } else if (type.equals(Type.LONG)) {
+            output.addNoArgInstruction(LOR);
+        } else {
+            // Error handling or logging for unsupported types
+            throw new IllegalStateException("Unsupported type for JOrOp codegen: " + type);
+        }
     }
 }
+
 
 /**
  * The AST node for an exclusive or (^) expression.
  */
 class JXorOp extends JBinaryExpression {
     /**
-     * Constructs an AST node for an exclusive or expression.
+     * Constructs an AST node for an exclusive OR expression.
      *
-     * @param line line in which the exclusive or expression occurs in the source file.
+     * @param line line in which the exclusive OR expression occurs in the source file.
      * @param lhs  the lhs operand.
      * @param rhs  the rhs operand.
      */
@@ -282,20 +380,52 @@ class JXorOp extends JBinaryExpression {
     }
 
     /**
-     * {@inheritDoc}
+     * Analyzes the lhs and rhs operands to determine their types, apply type promotion,
+     * and set the type for this expression based on the operation's rules.
      */
+    @Override
     public JExpression analyze(Context context) {
-        // TODO
+        lhs = lhs.analyze(context);
+        rhs = rhs.analyze(context);
+
+        // Type checking to ensure operands are integer or long for bitwise XOR
+        if (lhs.type().equals(Type.INT) && rhs.type().equals(Type.INT)) {
+            type = Type.INT;
+        } else if (lhs.type().equals(Type.LONG) || rhs.type().equals(Type.LONG)) {
+            // Promote to long if either operand is long
+            type = Type.LONG;
+        } else {
+            // Report error for invalid operand types
+            JAST.compilationUnit.reportSemanticError(line(),
+                    "Invalid operand types for ^ operator");
+            // Set to ANY to avoid further errors in case of invalid types
+            type = Type.ANY;
+        }
+
         return this;
     }
 
     /**
-     * {@inheritDoc}
+     * Generates JVM bytecode for performing the exclusive OR operation.
      */
+    @Override
     public void codegen(CLEmitter output) {
-        // TODO
+        // Generate code for evaluating the lhs and rhs expressions
+        lhs.codegen(output);
+        rhs.codegen(output);
+
+        // Emit the appropriate exclusive OR instruction based on the type
+        if (type.equals(Type.INT)) {
+            output.addNoArgInstruction(IXOR);
+        } else if (type.equals(Type.LONG)) {
+            output.addNoArgInstruction(LXOR);
+        } else {
+            // Error handling or logging for unsupported types
+            throw new IllegalStateException("Unsupported type for JXorOp codegen: " + type);
+        }
     }
 }
+
 
 /**
  * The AST node for an and (&amp;) expression.
@@ -418,5 +548,20 @@ class JLRightShiftOp extends JBinaryExpression {
      */
     public void codegen(CLEmitter output) {
         // TODO
+    }
+}
+
+class JBitwiseAndOp extends JBinaryExpression {
+    public JBitwiseAndOp(int line, JExpression lhs, JExpression rhs) {
+        super(line, "&", lhs, rhs);
+    }
+
+    public JExpression analyze(Context context) {
+        // Type checking and analysis code here
+        return this;
+    }
+
+    public void codegen(CLEmitter output) {
+        // Bytecode generation code here
     }
 }
