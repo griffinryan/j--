@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ca9dc380-2810-43c0-985e-a93136b4c245" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jminusminus/JMethodDeclaration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jminusminus/JMethodDeclaration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jminusminus/JSwitchStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jminusminus/JSwitchStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jminusminus/JThrowStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jminusminus/JThrowStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jminusminus/JTryStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jminusminus/JTryStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jminusminus/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jminusminus/Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jminusminus/JFormalParameter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jminusminus/JFormalParameter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jminusminus/TokenInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jminusminus/TokenInfo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +66,7 @@
       <workItem from="1706836967927" duration="3000" />
       <workItem from="1707688872143" duration="14674000" />
       <workItem from="1707721054942" duration="73000" />
-      <workItem from="1707724224384" duration="2362000" />
+      <workItem from="1707724224384" duration="3012000" />
     </task>
     <servers />
   </component>
