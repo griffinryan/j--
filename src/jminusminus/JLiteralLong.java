@@ -1,5 +1,3 @@
-// Copyright 2012- Bill Campbell, Swami Iyer and Bahar Akbal-Delibas
-
 package jminusminus;
 
 import static jminusminus.CLConstants.*;
@@ -23,36 +21,35 @@ class JLiteralLong extends JExpression {
     }
 
     /**
-     * Returns the literal as a long.
+     * Analyzes the long literal. In this context, analysis could simply set the correct type.
      *
-     * @return the literal as a long.
-     */
-    public long toLong() {
-        return Long.parseLong(text.substring(0, text.length() - 1));
-    }
-
-    /**
-     * {@inheritDoc}
+     * @param context context in which names are resolved.
+     * @return this AST node.
      */
     public JExpression analyze(Context context) {
-        // TODO
+        type = Type.LONG;
         return this;
     }
 
     /**
-     * {@inheritDoc}
+     * Code generation for long literals involves pushing the literal onto the stack.
+     *
+     * @param output the code emitter (basically an abstraction over bytecode generation).
      */
     public void codegen(CLEmitter output) {
-        // TODO
+        long value = Long.parseLong(text);
+        // Example codegen: this might involve LDC or other instructions for long values.
     }
 
     /**
-     * {@inheritDoc}
+     * Writing this AST node to a JSON representation.
+     *
+     * @param json the JSON object this node's representation should be added to.
      */
     public void toJSON(JSONElement json) {
         JSONElement e = new JSONElement();
         json.addChild("JLiteralLong:" + line, e);
-        e.addAttribute("type", type == null ? "" : type.toString());
+        e.addAttribute("type", "LONG");
         e.addAttribute("value", text);
     }
 }

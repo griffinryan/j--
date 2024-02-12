@@ -22,11 +22,17 @@ import java.util.Hashtable;
  * to the same Type object. The resolve() method does this.
  */
 class Type {
+
     // The Type's internal (Java) representation.
     private Class<?> classRep;
 
     // Maps type names to their Type representations.
     private static Hashtable<String, Type> types = new Hashtable<String, Type>();
+
+    /**
+     * The float type.
+     **/
+    public final static Type FLOAT = typeFor(float.class);
 
     /**
      * The int type.
