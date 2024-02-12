@@ -7,61 +7,76 @@ import static jminusminus.CLConstants.*;
 /**
  * The AST node for a conditional expression.
  */
-class JConditionalExpression extends JExpression {
-    // Test expression.
+public class JConditionalExpression extends JExpression {
     private JExpression condition;
+    private JExpression truePart;
+    private JExpression falsePart;
 
-    // Then part.
-    private JExpression thenPart;
-
-    // Else part.
-    private JExpression elsePart;
-
-    /**
-     * Constructs an AST node for a conditional expression.
-     *
-     * @param line      line in which the conditional expression occurs in the source file.
-     * @param condition test expression.
-     * @param thenPart  then part.
-     * @param elsePart  else part.
-     */
-    public JConditionalExpression(int line, JExpression condition, JExpression thenPart,
-                                  JExpression elsePart) {
+    public JConditionalExpression(int line, JExpression condition, JExpression truePart, JExpression falsePart) {
         super(line);
         this.condition = condition;
-        this.thenPart = thenPart;
-        this.elsePart = elsePart;
+        this.truePart = truePart;
+        this.falsePart = falsePart;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    @Override
     public JExpression analyze(Context context) {
-        // TODO
+        // Analyze the condition and ensure it's a boolean expression
+        condition = condition.analyze(context);
+        if (condition.type() != Type.BOOLEAN) {
+            JAST.compilationUnit.reportSemanticError(line(),
+                    "Condition in conditional expression must be of type boolean.");
+        }
+
+        // Analyze both branches
+        truePart = truePart.analyze(context);
+        falsePart = falsePart.analyze(context);
+
+        // Ensure the true and false parts have compatible types
+        if (!truePart.type().equals(falsePart.type())) {
+            JAST.compilationUnit.reportSemanticError(line(),
+                    "True and false parts of the conditional expression must have compatible types.");
+        }
+
+        // The type of the conditional expression is the type of the true (or false) part
+        type = truePart.type();
+
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    @Override
     public void codegen(CLEmitter output) {
-        // TODO
+        String trueLabel = output.createLabel();
+        String endLabel = output.createLabel();
+
+        // Generate bytecode for the condition and compare it with zero (false)
+        condition.codegen(output, trueLabel, false);
+
+        // If condition is false, jump to the false part
+        falsePart.codegen(output);
+        output.addBranchInstruction(GOTO, endLabel);
+
+        // Label for the true part
+        output.addLabel(trueLabel);
+        truePart.codegen(output);
+
+        // Label for the end of the conditional expression
+        output.addLabel(endLabel);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    @Override
     public void toJSON(JSONElement json) {
         JSONElement e = new JSONElement();
         json.addChild("JConditionalExpression:" + line, e);
-        JSONElement e1 = new JSONElement();
-        e.addChild("Condition", e1);
-        condition.toJSON(e1);
-        JSONElement e2 = new JSONElement();
-        e.addChild("ThenPart", e2);
-        thenPart.toJSON(e2);
-        JSONElement e3 = new JSONElement();
-        e.addChild("ElsePart", e3);
-        elsePart.toJSON(e3);
+        e.addAttribute("type", type == null ? "" : type.toString());
+        JSONElement condElement = new JSONElement();
+        condition.toJSON(condElement);
+        e.addChild("Condition", condElement);
+        JSONElement truePartElement = new JSONElement();
+        truePart.toJSON(truePartElement);
+        e.addChild("TruePart", truePartElement);
+        JSONElement falsePartElement = new JSONElement();
+        falsePart.toJSON(falsePartElement);
+        e.addChild("FalsePart", falsePartElement);
     }
 }
