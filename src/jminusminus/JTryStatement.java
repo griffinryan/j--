@@ -4,7 +4,7 @@ package jminusminus;
 
 import java.util.ArrayList;
 
-import static jminusminus.CLConstants.*;
+import static jminusminus.CLConstants.GOTO;
 
 /**
  * The AST node for a try-catch-finally statement.
@@ -24,12 +24,6 @@ class JTryStatement extends JStatement {
 
     /**
      * Constructs an AST node for a try-statement.
-     *
-     * @param line         line in which the while-statement occurs in the source file.
-     * @param tryBlock     the try block.
-     * @param parameters   the catch parameters.
-     * @param catchBlocks  the catch blocks.
-     * @param finallyBlock the finally block.
      */
     public JTryStatement(int line, JBlock tryBlock, ArrayList<JFormalParameter> parameters,
                          ArrayList<JBlock> catchBlocks, JBlock finallyBlock) {
@@ -40,19 +34,72 @@ class JTryStatement extends JStatement {
         this.finallyBlock = finallyBlock;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    @Override
     public JTryStatement analyze(Context context) {
-        // TODO
+        // Analyze the try block
+        tryBlock = tryBlock.analyze(context);
+
+        // Each catch block creates a new scope
+        for (int i = 0; i < catchBlocks.size(); i++) {
+            JFormalParameter param = parameters.get(i);
+            param.setType(param.type().resolve(context));
+            catchBlocks.set(i, catchBlocks.get(i).analyze(context));
+        }
+
+        // Finally block analysis
+        if (finallyBlock != null) {
+            finallyBlock = finallyBlock.analyze(context);
+        }
+
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    @Override
     public void codegen(CLEmitter output) {
-        // TODO
+        String startTryLabel = output.createLabel();
+        String endTryLabel = output.createLabel();
+        ArrayList<String> catchLabels = new ArrayList<>();
+        String startFinallyLabel = finallyBlock != null ? output.createLabel() : null;
+        String endFinallyLabel = finallyBlock != null ? output.createLabel() : null;
+
+        output.addLabel(startTryLabel);
+        tryBlock.codegen(output);
+        output.addLabel(endTryLabel);
+
+        // Jump to finally or end
+        if (finallyBlock != null) {
+            output.addBranchInstruction(GOTO, startFinallyLabel);
+        }
+
+        // Generate catch blocks
+        for (int i = 0; i < catchBlocks.size(); i++) {
+            String catchLabel = output.createLabel();
+            catchLabels.add(catchLabel);
+            output.addLabel(catchLabel);
+
+            // Assuming catch parameters are exceptions
+            parameters.get(i).codegen(output);
+
+            catchBlocks.get(i).codegen(output);
+
+            // Jump to finally or end
+            if (finallyBlock != null) {
+                output.addBranchInstruction(GOTO, startFinallyLabel);
+            }
+        }
+
+        // Finally block generation
+        if (finallyBlock != null) {
+            output.addLabel(startFinallyLabel);
+            finallyBlock.codegen(output);
+            output.addLabel(endFinallyLabel);
+        }
+
+        // Exception table setup
+        for (int i = 0; i < catchBlocks.size(); i++) {
+            output.addExceptionHandler(startTryLabel, endTryLabel, catchLabels.get(i),
+                    parameters.get(i).type().jvmName());
+        }
     }
 
     /**
@@ -82,4 +129,5 @@ class JTryStatement extends JStatement {
             finallyBlock.toJSON(e2);
         }
     }
+
 }

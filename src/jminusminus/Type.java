@@ -737,6 +737,11 @@ class TypeName extends Type {
         }
         return resolvedType;
     }
+
+    public String getName() {
+        return this.name;
+    }
+
 }
 
 /**
