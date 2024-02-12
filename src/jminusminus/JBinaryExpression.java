@@ -54,6 +54,7 @@ abstract class JBinaryExpression extends JExpression {
         e.addChild("Operand2", e2);
         rhs.toJSON(e2);
     }
+
 }
 
 /**
@@ -432,9 +433,9 @@ class JXorOp extends JBinaryExpression {
  */
 class JAndOp extends JBinaryExpression {
     /**
-     * Constructs an AST node for an and expression.
+     * Constructs an AST node for a bitwise AND expression.
      *
-     * @param line line in which the and expression occurs in the source file.
+     * @param line line in which the bitwise AND expression occurs in the source file.
      * @param lhs  the lhs operand.
      * @param rhs  the rhs operand.
      */
@@ -443,20 +444,52 @@ class JAndOp extends JBinaryExpression {
     }
 
     /**
-     * {@inheritDoc}
+     * Analyzes the lhs and rhs operands to determine their types, apply type promotion,
+     * and set the type for this expression based on the operation's rules.
      */
+    @Override
     public JExpression analyze(Context context) {
-        // TODO
+        lhs = lhs.analyze(context);
+        rhs = rhs.analyze(context);
+
+        // Type checking to ensure operands are integer or long for bitwise AND
+        if (lhs.type().equals(Type.INT) && rhs.type().equals(Type.INT)) {
+            type = Type.INT;
+        } else if (lhs.type().equals(Type.LONG) || rhs.type().equals(Type.LONG)) {
+            // Promote to long if either operand is long
+            type = Type.LONG;
+        } else {
+            // Report error for invalid operand types
+            JAST.compilationUnit.reportSemanticError(line(),
+                    "Invalid operand types for & operator");
+            // Set to ANY to avoid further errors in case of invalid types
+            type = Type.ANY;
+        }
+
         return this;
     }
 
     /**
-     * {@inheritDoc}
+     * Generates JVM bytecode for performing the bitwise AND operation.
      */
+    @Override
     public void codegen(CLEmitter output) {
-        // TODO
+        // Generate code for evaluating the lhs and rhs expressions
+        lhs.codegen(output);
+        rhs.codegen(output);
+
+        // Emit the appropriate bitwise AND instruction based on the type
+        if (type.equals(Type.INT)) {
+            output.addNoArgInstruction(IAND);
+        } else if (type.equals(Type.LONG)) {
+            output.addNoArgInstruction(LAND);
+        } else {
+            // Error handling or logging for unsupported types
+            throw new IllegalStateException("Unsupported type for JAndOp codegen: " + type);
+        }
     }
 }
+
 
 /**
  * The AST node for an arithmetic left shift (&lt;&lt;) expression.
@@ -474,20 +507,47 @@ class JALeftShiftOp extends JBinaryExpression {
     }
 
     /**
-     * {@inheritDoc}
+     * Analyzes the lhs and rhs operands to determine their types, apply type promotion,
+     * and set the type for this expression based on the operation's rules.
      */
+    @Override
     public JExpression analyze(Context context) {
-        // TODO
+        lhs = lhs.analyze(context);
+        rhs = rhs.analyze(context);
+
+        // Type checking to ensure lhs is integer or long and rhs is integer
+        if (!((lhs.type().equals(Type.INT) || lhs.type().equals(Type.LONG)) && rhs.type().equals(Type.INT))) {
+            JAST.compilationUnit.reportSemanticError(line(),
+                    "Invalid operand types for << operator: left operand must be int or long, right operand must be int");
+        }
+
+        // The result type of the shift operation is the type of the left operand
+        type = lhs.type();
+
         return this;
     }
 
     /**
-     * {@inheritDoc}
+     * Generates JVM bytecode for performing the arithmetic left shift operation.
      */
+    @Override
     public void codegen(CLEmitter output) {
-        // TODO
+        // Generate code for evaluating the lhs and rhs expressions
+        lhs.codegen(output);
+        rhs.codegen(output);
+
+        // Emit the appropriate left shift instruction based on the type of lhs
+        if (lhs.type().equals(Type.INT)) {
+            output.addNoArgInstruction(ISHL);
+        } else if (lhs.type().equals(Type.LONG)) {
+            output.addNoArgInstruction(LSHL);
+        } else {
+            // Error handling or logging for unsupported types
+            throw new IllegalStateException("Unsupported type for JALeftShiftOp codegen: " + lhs.type());
+        }
     }
 }
+
 
 /**
  * The AST node for an arithmetic right shift (&rt;&rt;) expression.
@@ -505,20 +565,47 @@ class JARightShiftOp extends JBinaryExpression {
     }
 
     /**
-     * {@inheritDoc}
+     * Analyzes the lhs and rhs operands to determine their types, apply type promotion,
+     * and set the type for this expression based on the operation's rules.
      */
+    @Override
     public JExpression analyze(Context context) {
-        // TODO
+        lhs = lhs.analyze(context);
+        rhs = rhs.analyze(context);
+
+        // Type checking to ensure lhs is integer or long and rhs is integer
+        if (!((lhs.type().equals(Type.INT) || lhs.type().equals(Type.LONG)) && rhs.type().equals(Type.INT))) {
+            JAST.compilationUnit.reportSemanticError(line(),
+                    "Invalid operand types for >> operator: left operand must be int or long, right operand must be int");
+        }
+
+        // The result type of the shift operation is the type of the left operand
+        type = lhs.type();
+
         return this;
     }
 
     /**
-     * {@inheritDoc}
+     * Generates JVM bytecode for performing the arithmetic right shift operation.
      */
+    @Override
     public void codegen(CLEmitter output) {
-        // TODO
+        // Generate code for evaluating the lhs and rhs expressions
+        lhs.codegen(output);
+        rhs.codegen(output);
+
+        // Emit the appropriate right shift instruction based on the type of lhs
+        if (lhs.type().equals(Type.INT)) {
+            output.addNoArgInstruction(ISHR);
+        } else if (lhs.type().equals(Type.LONG)) {
+            output.addNoArgInstruction(LSHR);
+        } else {
+            // Error handling or logging for unsupported types
+            throw new IllegalStateException("Unsupported type for JARightShiftOp codegen: " + lhs.type());
+        }
     }
 }
+
 
 /**
  * The AST node for a logical right shift (&rt;&rt;&rt;) expression.
@@ -536,18 +623,44 @@ class JLRightShiftOp extends JBinaryExpression {
     }
 
     /**
-     * {@inheritDoc}
+     * Analyzes the lhs and rhs operands to determine their types, apply type promotion,
+     * and set the type for this expression based on the operation's rules.
      */
+    @Override
     public JExpression analyze(Context context) {
-        // TODO
+        lhs = lhs.analyze(context);
+        rhs = rhs.analyze(context);
+
+        // Type checking to ensure lhs is integer or long and rhs is integer
+        if (!((lhs.type().equals(Type.INT) || lhs.type().equals(Type.LONG)) && rhs.type().equals(Type.INT))) {
+            JAST.compilationUnit.reportSemanticError(line(),
+                    "Invalid operand types for >>> operator: left operand must be int or long, right operand must be int");
+        }
+
+        // The result type of the shift operation is the type of the left operand
+        type = lhs.type();
+
         return this;
     }
 
     /**
-     * {@inheritDoc}
+     * Generates JVM bytecode for performing the logical right shift operation.
      */
+    @Override
     public void codegen(CLEmitter output) {
-        // TODO
+        // Generate code for evaluating the lhs and rhs expressions
+        lhs.codegen(output);
+        rhs.codegen(output);
+
+        // Emit the appropriate logical right shift instruction based on the type of lhs
+        if (lhs.type().equals(Type.INT)) {
+            output.addNoArgInstruction(IUSHR);
+        } else if (lhs.type().equals(Type.LONG)) {
+            output.addNoArgInstruction(LUSHR);
+        } else {
+            // Error handling or logging for unsupported types
+            throw new IllegalStateException("Unsupported type for JLRightShiftOp codegen: " + lhs.type());
+        }
     }
 }
 
@@ -556,12 +669,96 @@ class JBitwiseAndOp extends JBinaryExpression {
         super(line, "&", lhs, rhs);
     }
 
+    @Override
     public JExpression analyze(Context context) {
-        // Type checking and analysis code here
+        lhs = lhs.analyze(context);
+        rhs = rhs.analyze(context);
+
+        // Ensure both operands are of the same type and either INT or LONG
+        if ((lhs.type() == Type.INT && rhs.type() == Type.INT) ||
+                (lhs.type() == Type.LONG && rhs.type() == Type.LONG)) {
+            type = lhs.type(); // The type of this expression matches the operands
+        } else {
+            // Report an error if the operands are of different types or not INT/LONG
+            JAST.compilationUnit.reportSemanticError(line,
+                    "Operands to & must be the same type and either INT or LONG.");
+            type = Type.ANY; // Use ANY to indicate an error state
+        }
+
         return this;
     }
 
+    @Override
     public void codegen(CLEmitter output) {
-        // Bytecode generation code here
+        lhs.codegen(output);
+        rhs.codegen(output);
+
+        // Emit the correct instruction based on the determined type
+        if (type == Type.INT) {
+            output.addNoArgInstruction(IAND); // Integer bitwise AND
+        } else if (type == Type.LONG) {
+            output.addNoArgInstruction(LAND); // Long bitwise AND
+        } else {
+            // Error handling for unsupported types; this should not happen if analysis is correct
+            throw new IllegalStateException("JBitwiseAndOp codegen encountered unsupported type: " + type);
+        }
+    }
+}
+
+class JBitwiseOrOp extends JBinaryExpression {
+    public JBitwiseOrOp(int line, JExpression lhs, JExpression rhs) {
+        super(line, "|", lhs, rhs);
+    }
+
+    @Override
+    public JExpression analyze(Context context) {
+        lhs = lhs.analyze(context);
+        rhs = rhs.analyze(context);
+
+        // Enforce that both operands are of integer types
+        if (lhs.type() == Type.INT && rhs.type() == Type.INT) {
+            type = Type.INT;
+        } else {
+            JAST.compilationUnit.reportSemanticError(line,
+                    "Operands to | must be of type INT.");
+        }
+
+        return this;
+    }
+
+    @Override
+    public void codegen(CLEmitter output) {
+        lhs.codegen(output);
+        rhs.codegen(output);
+        output.addNoArgInstruction(IOR); // JVM instruction for integer bitwise OR
+    }
+}
+
+class JBitwiseXorOp extends JBinaryExpression {
+    public JBitwiseXorOp(int line, JExpression lhs, JExpression rhs) {
+        super(line, "^", lhs, rhs);
+    }
+
+    @Override
+    public JExpression analyze(Context context) {
+        lhs = lhs.analyze(context);
+        rhs = rhs.analyze(context);
+
+        // Check that both operands are of integer types
+        if (lhs.type() == Type.INT && rhs.type() == Type.INT) {
+            type = Type.INT;
+        } else {
+            JAST.compilationUnit.reportSemanticError(line,
+                    "Operands to ^ must be of type INT.");
+        }
+
+        return this;
+    }
+
+    @Override
+    public void codegen(CLEmitter output) {
+        lhs.codegen(output);
+        rhs.codegen(output);
+        output.addNoArgInstruction(IXOR); // JVM instruction for integer bitwise XOR
     }
 }

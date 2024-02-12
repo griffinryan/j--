@@ -13,37 +13,66 @@ public class JSwitchStatement extends JStatement {
     // Test expression.
     private JExpression condition;
 
-    // List of switch-statement groups.
+    // List of switch-statement groups
     private ArrayList<SwitchStatementGroup> stmtGroup;
 
-    /**
-     * Constructs an AST node for a switch-statement.
-     *
-     * @param line      line in which the switch-statement occurs in the source file.
-     * @param condition test expression.
-     * @param stmtGroup list of statement groups.
-     */
-    public JSwitchStatement(int line, JExpression condition,
-                            ArrayList<SwitchStatementGroup> stmtGroup) {
+    public JSwitchStatement(int line, JExpression condition, ArrayList<SwitchStatementGroup> stmtGroup) {
         super(line);
         this.condition = condition;
         this.stmtGroup = stmtGroup;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    @Override
     public JStatement analyze(Context context) {
-        // TODO
+        condition = condition.analyze(context);
+        // Check for String, int (char is subsumed under int in this context)
+        if (condition.type() != Type.STRING && condition.type() != Type.INT) {
+            JAST.compilationUnit.reportSemanticError(line,
+                    "Switch condition must be of type int or String, found type: %s",
+                    condition.type());
+        }
+
+        for (SwitchStatementGroup group : stmtGroup) {
+            group.analyze(context, condition.type());
+        }
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    @Override
     public void codegen(CLEmitter output) {
-        // TODO
+        String endSwitchLabel = output.createLabel();
+        ArrayList<String> caseLabels = new ArrayList<>();
+
+        // For Strings, we need to handle them differently
+        if (condition.type() == Type.STRING) {
+            condition.codegen(output);
+            for (SwitchStatementGroup group : stmtGroup) {
+                String caseLabel = output.createLabel();
+                caseLabels.add(caseLabel);
+                group.codegenLabelsForString(output, caseLabel, endSwitchLabel);
+            }
+        } else {
+            // Similar to the previous approach for int types
+            // Generate code for condition
+            condition.codegen(output);
+            // Assume each group can generate its labels and jump to them
+            for (SwitchStatementGroup group : stmtGroup) {
+                String caseLabel = output.createLabel();
+                caseLabels.add(caseLabel);
+                group.codegenLabelsForInt(output, caseLabel);
+            }
+        }
+
+        // Generate code for each case block
+        for (int i = 0; i < stmtGroup.size(); i++) {
+            output.addLabel(caseLabels.get(i));
+            stmtGroup.get(i).codegenBlock(output);
+        }
+
+        // End of switch
+        output.addLabel(endSwitchLabel);
     }
+
 
     /**
      * {@inheritDoc}
