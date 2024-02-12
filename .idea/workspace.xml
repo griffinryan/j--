@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ca9dc380-2810-43c0-985e-a93136b4c245" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jminusminus/JLiteralLong.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jminusminus/JLiteralLong.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jminusminus/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jminusminus/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jminusminus/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jminusminus/Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jminusminus/JBinaryExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jminusminus/JBinaryExpression.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +36,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "work",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -65,7 +63,7 @@
       <option name="presentableId" value="Default" />
       <updated>1706836966358</updated>
       <workItem from="1706836967927" duration="3000" />
-      <workItem from="1707688872143" duration="4889000" />
+      <workItem from="1707688872143" duration="9271000" />
     </task>
     <servers />
   </component>
