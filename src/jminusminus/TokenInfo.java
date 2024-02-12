@@ -16,10 +16,13 @@ enum TokenKind {
     NEW("new"), PACKAGE("package"), PRIVATE("private"), PROTECTED("protected"),
     PUBLIC("public"), RETURN("return"), STATIC("static"), SUPER("super"), THIS("this"),
     VOID("void"), WHILE("while"), DO("do"), UNTIL("until"),
+    METHOD("method"), THROWS("throws"), FOR("for"), SWITCH("switch"), CASE("case"), DEFAULT("default"),
+    TRY("try"), CATCH("catch"), FINALLY("finally"),
 
     // Operators.
     ASSIGN("="), DEC("--"), EQUAL("=="), GT(">"), INC("++"), LAND("&&"), LE("<="), LNOT("!"),
-    MINUS("-"), PLUS("+"), PLUS_ASSIGN("+="), STAR("*"),
+    MINUS("-"), PLUS("+"), PLUS_ASSIGN("+="), STAR("*"), BAND("&"), BOR("|"), BXOR("^"),
+    QUESTION_MARK("?"), COLON(":"), LESS("<"), LOR("||"), ELLIPSIS("..."),
 
     // Separators.
     COMMA(","), DOT("."), LBRACK("["), LCURLY("{"), LPAREN("("), RBRACK("]"), RCURLY("}"),

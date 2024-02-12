@@ -72,6 +72,15 @@ class Scanner {
         reserved.put(TRUE.image(), TRUE);
         reserved.put(VOID.image(), VOID);
         reserved.put(WHILE.image(), WHILE);
+        reserved.put(THROWS.image(), THROWS);
+        reserved.put(FOR.image(), FOR);
+        reserved.put(SWITCH.image(), SWITCH);
+        reserved.put(CASE.image(), CASE);
+        reserved.put(DEFAULT.image(), DEFAULT);
+        reserved.put(TRY.image(), TRY);
+        reserved.put(CATCH.image(), CATCH);
+        reserved.put(FINALLY.image(), FINALLY);
+        reserved.put(DO.image(), DO);
 
         // Prime the pump.
         nextCh();
@@ -225,6 +234,13 @@ class Scanner {
                 return new TokenInfo(COMMA, line);
             case '.':
                 nextCh();
+                if(ch == '.') {
+                    nextCh();
+                    if(ch == '.') {
+                        nextCh();
+                        return new TokenInfo(ELLIPSIS, line);
+                    }
+                }
                 return new TokenInfo(DOT, line);
             case '[':
                 nextCh();
@@ -298,9 +314,28 @@ class Scanner {
                     nextCh();
                     return new TokenInfo(LAND, line);
                 } else {
-                    reportScannerError("Operator & is not supported in j--");
-                    return getNextToken();
+                    // reportScannerError("Operator & is not supported in j--");
+                    nextCh();
+                    return new TokenInfo(BAND, line);
                 }
+            case '|':
+                nextCh();
+                if(ch == '|') {
+                    nextCh();
+                    return new TokenInfo(LOR, line);
+                } else {
+                    nextCh();
+                    return new TokenInfo(BOR, line);
+                }
+            case '^':
+                nextCh();
+                return new TokenInfo(BXOR, line);
+            case '?':
+                nextCh();
+                return new TokenInfo(QUESTION_MARK, line);
+            case ':':
+                nextCh();
+                return new TokenInfo(COLON, line);
             case '\'':
                 buffer = new StringBuffer();
                 buffer.append('\'');

@@ -242,42 +242,60 @@ public class Parser {
      */
     private JMember memberDecl(ArrayList<String> mods) {
         int line = scanner.token().line();
-        JMember memberDecl = null;
-        if (seeIdentLParen()) {
-            // A constructor.
-            mustBe(IDENTIFIER);
-            String name = scanner.previousToken().image();
-            ArrayList<JFormalParameter> params = formalParameters();
-            JBlock body = block();
-            memberDecl = new JConstructorDeclaration(line, mods, name, params, null, body);
-        } else {
-            Type type = null;
-            if (have(VOID)) {
-                // A void method.
-                type = Type.VOID;
-                mustBe(IDENTIFIER);
-                String name = scanner.previousToken().image();
-                ArrayList<JFormalParameter> params = formalParameters();
-                JBlock body = have(SEMI) ? null : block();
-                memberDecl = new JMethodDeclaration(line, mods, name, type, params, null, body);
-            } else {
-                type = type();
-                if (seeIdentLParen()) {
-                    // A non void method.
-                    mustBe(IDENTIFIER);
-                    String name = scanner.previousToken().image();
-                    ArrayList<JFormalParameter> params = formalParameters();
-                    JBlock body = have(SEMI) ? null : block();
-                    memberDecl = new JMethodDeclaration(line, mods, name, type, params, null, body);
-                } else {
-                    // A field.
-                    memberDecl = new JFieldDeclaration(line, mods, variableDeclarators(type));
-                    mustBe(SEMI);
+
+        // Detect if the declaration is for a method or a field based on the lookahead
+        if (see(LPAREN) || seeIdentLParen()) {
+            // It's a method or constructor declaration
+            Type returnType = null;
+            String name;
+
+            // Check for constructors or void methods first
+            if (see(IDENTIFIER)) {
+                name = scanner.token().image();
+                scanner.next(); // Consume the identifier
+                if (name.equals("void")) {
+                    // It's a void method, convert name to type
+                    returnType = Type.VOID;
+                    mustBe(IDENTIFIER); // Method name
+                    name = scanner.previousToken().image();
+                } else if (!see(LPAREN)) {
+                    // It's a constructor, revert name as type
+                    returnType = new TypeName(line, name);
+                    name = scanner.token().image(); // Use class name as constructor name
+                    scanner.next(); // Consume the constructor identifier
                 }
+            } else {
+                // Non-void method
+                returnType = type();
+                mustBe(IDENTIFIER); // Method name
+                name = scanner.previousToken().image();
             }
+
+            ArrayList<JFormalParameter> params = formalParameters();
+
+            // Parse throws clause if present
+            ArrayList<TypeName> exceptions = new ArrayList<>();
+            if (have(THROWS)) {
+                do {
+                    exceptions.add(qualifiedIdentifier());
+                } while (have(COMMA));
+            }
+
+            JBlock body = null;
+            if (!have(SEMI)) { // Assuming methods with bodies don't end with a semicolon
+                body = block();
+            }
+
+            return new JMethodDeclaration(line, mods, name, returnType, params, exceptions, body);
+        } else {
+            // It's a field declaration
+            Type type = type();
+            ArrayList<JVariableDeclarator> variableDeclarators = variableDeclarators(type);
+            mustBe(SEMI);
+            return new JFieldDeclaration(line, mods, variableDeclarators);
         }
-        return memberDecl;
     }
+
 
     /**
      * Parses a block and returns an AST for it.
@@ -354,6 +372,16 @@ public class Parser {
             JExpression test = parExpression();
             JStatement statement = statement();
             return new JWhileStatement(line, test, statement);
+        } else if (have(FOR)) {
+            return forStatement();
+        } else if (have(SWITCH)) {
+            return switchStatement();
+        } else if (have(TRY)) {
+            return tryStatement();
+        } else if (have(THROWS)) {
+            return throwStatement();
+        } else if (have(DO)) {
+            return doUntilStatement();
         } else {
             // Must be a statementExpression.
             JStatement statement = statementExpression();
@@ -395,11 +423,19 @@ public class Parser {
      */
     private JFormalParameter formalParameter() {
         int line = scanner.token().line();
+        boolean isVarArgs = false;
         Type type = type();
+        // Check for ellipsis indicating varargs
+        if (have(ELLIPSIS)) {
+            isVarArgs = true;
+        }
         mustBe(IDENTIFIER);
-        String name = scanner.previousToken().image();
-        return new JFormalParameter(line, name, type);
+        String name = scanner.token().image();
+        scanner.next(); // Consume the IDENTIFIER
+
+        return new JFormalParameter(line, name, type, isVarArgs);
     }
+
 
     /**
      * Parses a parenthesized expression and returns an AST for it.
@@ -656,7 +692,7 @@ public class Parser {
      */
     private JExpression assignmentExpression() {
         int line = scanner.token().line();
-        JExpression lhs = conditionalAndExpression();
+        JExpression lhs = conditionalExpression();
         if (have(ASSIGN)) {
             return new JAssignOp(line, lhs, assignmentExpression());
         } else if (have(PLUS_ASSIGN)) {
@@ -1232,4 +1268,260 @@ public class Parser {
         scanner.returnToPosition();
         return result;
     }
+
+    private JExpression logicalOrExpression() {
+        int line = scanner.token().line();
+        JExpression lhs = logicalAndExpression(); // Start with the next higher precedence level
+        while (have(LOR)) {
+            JExpression rhs = logicalAndExpression(); // Parse the right-hand side of the logical OR
+            lhs = new JLogicalOrOp(line, lhs, rhs);
+        }
+        return lhs;
+    }
+
+    private JExpression logicalAndExpression() {
+        int line = scanner.token().line();
+        JExpression lhs = bitwiseOrExpression();
+        while (have(LAND)) {
+            JExpression rhs = bitwiseOrExpression();
+            lhs = new JLogicalAndOp(line, lhs, rhs);
+        }
+        return lhs;
+    }
+
+    private JExpression bitwiseAndExpression() {
+        int line = scanner.token().line();
+        JExpression result = equalityExpression(); // Start with the next lower precedence
+        while (have(BAND)) {
+            JExpression right = equalityExpression();
+            result = new JBitwiseAndOp(line, result, right);
+        }
+        return result;
+    }
+
+    private JExpression bitwiseOrExpression() {
+        int line = scanner.token().line();
+        JExpression result = bitwiseXorExpression(); // Assume this exists and handles "^"
+        while (have(BOR)) { // Bitwise OR
+            JExpression right = bitwiseXorExpression();
+            result = new JBitwiseOrOp(line, result, right);
+        }
+        return result;
+    }
+
+    private JExpression bitwiseXorExpression() {
+        int line = scanner.token().line();
+        JExpression result = bitwiseAndExpression(); // Start with AND as it has higher precedence
+        while (have(BXOR)) { // Bitwise XOR
+            JExpression right = bitwiseAndExpression();
+            result = new JBitwiseXorOp(line, result, right);
+        }
+        return result;
+    }
+
+    private JExpression conditionalExpression() {
+        int line = scanner.token().line();
+        JExpression condition = logicalOrExpression(); // Use logicalOrExpression here
+        if (have(QUESTION_MARK)) {
+            JExpression truePart = expression(); // Parse the true part of the ternary
+            mustBe(COLON);
+            JExpression falsePart = conditionalExpression(); // Parse the false part
+            return new JConditionalExpression(line, condition, truePart, falsePart);
+        }
+        return condition; // If no ternary operator, just return the condition
+    }
+
+    private JStatement forStatement() {
+        int line = scanner.token().line();
+        mustBe(FOR);
+        mustBe(LPAREN);
+
+        // Lookahead to distinguish between basic and enhanced for-statements
+        if (seeBasicForStatement()) {
+            return basicForStatement(line);
+        } else {
+            return enhancedForStatement(line);
+        }
+    }
+
+    private boolean seeBasicForStatement() {
+        scanner.recordPosition();
+        boolean result = false;
+
+        // Check if the next tokens indicate a type (basic type or identifier for class types)
+        if (seeBasicType() || see(IDENTIFIER)) {
+            // Further look ahead required to distinguish from expressions starting with identifiers
+            scanner.next(); // Skip the type
+            if (see(IDENTIFIER)) {
+                // A type followed by an identifier likely indicates a variable declaration
+                result = true;
+            }
+            // Add more conditions as necessary based on your language's syntax
+        }
+
+        scanner.returnToPosition();
+        return result;
+    }
+
+    private JStatement basicForStatement(int line) {
+        mustBe(LPAREN);
+
+        ArrayList<JStatement> init = new ArrayList<>();
+        if (!see(SEMI)) {
+            // Parse initialization statements.
+            // This could be variable declarations or statement expressions.
+            if (seeLocalVariableDeclaration()) {
+                JVariableDeclaration declaration = localVariableDeclarationStatement();
+                init.add(declaration);
+            } else {
+                do {
+                    JStatement statementExpr = statementExpression();
+                    init.add(statementExpr);
+                } while (have(COMMA));
+            }
+        }
+        mustBe(SEMI);
+
+        JExpression condition = null;
+        if (!see(SEMI)) {
+            condition = expression();
+        }
+        mustBe(SEMI);
+
+        ArrayList<JStatement> update = new ArrayList<>();
+        if (!see(RPAREN)) {
+            do {
+                JStatement updateExpr = statementExpression();
+                update.add(updateExpr);
+            } while (have(COMMA));
+        }
+        mustBe(RPAREN);
+
+        JStatement body = statement();
+
+        return new JForStatement(line, init, condition, update, body);
+    }
+
+    private JStatement enhancedForStatement(int line) {
+        mustBe(LPAREN); // Assuming we're already in the context of parsing a for-statement
+
+        // Parse the type and name for the variable declaration in the for-each loop
+        Type type = type();
+        mustBe(IDENTIFIER);
+        String name = scanner.previousToken().image();
+        JVariableDeclarator declarator = new JVariableDeclarator(line, name, type, null);
+        ArrayList<JVariableDeclarator> declarators = new ArrayList<>();
+        declarators.add(declarator);
+        JVariableDeclaration declaration = new JVariableDeclaration(line, declarators);
+
+        mustBe(COLON);
+        JExpression iterable = expression();
+
+        mustBe(RPAREN);
+        JStatement body = statement();
+
+        return new JEnhancedForStatement(line, declaration, iterable, body);
+    }
+
+    private JStatement switchStatement() {
+        int line = scanner.token().line();
+        mustBe(SWITCH);
+        mustBe(LPAREN);
+        JExpression condition = expression();
+        mustBe(RPAREN);
+        mustBe(LCURLY);
+
+        ArrayList<SwitchStatementGroup> stmtGroups = new ArrayList<>();
+        while (!see(RCURLY) && !see(EOF)) {
+            stmtGroups.add(switchStatementGroup());
+        }
+
+        mustBe(RCURLY);
+        return new JSwitchStatement(line, condition, stmtGroups);
+    }
+
+    private SwitchStatementGroup switchStatementGroup() {
+        ArrayList<JExpression> labels = new ArrayList<>();
+        ArrayList<JStatement> statements = new ArrayList<>();
+
+        // Parse case labels
+        while (see(CASE) || see(DEFAULT)) {
+            if (have(CASE)) {
+                labels.add(expression());
+                mustBe(COLON);
+            } else if (have(DEFAULT)) {
+                labels.add(null); // null indicates a default case
+                mustBe(COLON);
+                break; // Default case should be the last in the group
+            }
+        }
+
+        // Parse statements for this case group
+        while (!see(CASE) && !see(DEFAULT) && !see(RCURLY) && !see(EOF)) {
+            statements.add(blockStatement());
+        }
+
+        return new SwitchStatementGroup(labels, statements);
+    }
+
+    private JStatement tryStatement() {
+        int line = scanner.token().line();
+        mustBe(TRY);
+        JBlock tryBlock = block();
+
+        ArrayList<JFormalParameter> catchParameters = new ArrayList<>();
+        ArrayList<JBlock> catchBlocks = new ArrayList<>();
+
+        while (see(CATCH)) {
+            mustBe(CATCH);
+            mustBe(LPAREN);
+            // Assume formalParameter() parses and returns a catch parameter.
+            JFormalParameter catchParam = formalParameter();
+            mustBe(RPAREN);
+            JBlock catchBlock = block();
+
+            catchParameters.add(catchParam);
+            catchBlocks.add(catchBlock);
+        }
+
+        JBlock finallyBlock = null;
+        if (see(FINALLY)) {
+            mustBe(FINALLY);
+            finallyBlock = block();
+        }
+
+        return new JTryStatement(line, tryBlock, catchParameters, catchBlocks, finallyBlock);
+    }
+
+    private JStatement throwStatement() {
+        int line = scanner.token().line();
+        mustBe(THROWS);
+        JExpression expr = expression();
+        mustBe(SEMI);
+        return new JThrowStatement(line, expr);
+    }
+
+    private JStatement doUntilStatement() {
+        int line = scanner.token().line();
+        mustBe(DO);
+        JBlock body = block(); // Directly cast, assuming the grammar ensures this is safe.
+        mustBe(UNTIL);
+        JExpression test = parExpression();
+        mustBe(SEMI);
+        return new JDoUntilStatement(line, body, test);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
