@@ -6,10 +6,11 @@
       <sourceFolder url="file://$MODULE_DIR$/clemitter" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/jvm" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/spim" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/spim" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="module" module-name="j--" />
+    <orderEntry type="library" exported="" name="lib" level="project" />
+    <orderEntry type="module" module-name="j--" exported="" />
   </component>
 </module>

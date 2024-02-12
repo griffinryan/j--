@@ -5,422 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca9dc380-2810-43c0-985e-a93136b4c245" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/AllClasses.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/front.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus.index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/AmbiguousName.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/CLAttributeInfo.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/CLCPInfo.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/CLConstantPool.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/CLConstants.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/CLEmitter.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/CLFile.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/CLInstruction.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/CLMemberInfo.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/CLPath.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/Context.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/IDefn.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JAST.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JArrayExpression.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JArrayInitializer.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JAssignment.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JBinaryExpression.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JBlock.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JBooleanBinaryExpression.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JBreakStatement.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JCastOp.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JClassDeclaration.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JComparisonExpression.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JCompilationUnit.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JConditionalExpression.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JConstructorDeclaration.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JContinueStatement.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JDoStatement.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JEmptyStatement.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JExpression.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JFieldDeclaration.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JFieldSelection.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JForStatement.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JFormalParameter.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JIfStatement.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JInstanceOfOp.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JInterfaceDeclaration.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JLhs.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JLiteralBoolean.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JLiteralChar.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JLiteralDouble.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JLiteralInt.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JLiteralLong.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JLiteralNull.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JLiteralString.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JMember.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JMessageExpression.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JMethodDeclaration.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JNewArrayOp.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JNewOp.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JReturnStatement.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JStatement.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JStatementExpression.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JStringConcatenationOp.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JSuper.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JSuperConstruction.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JSwitchStatement.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JThis.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JThisConstruction.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JThrowStatement.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JTryStatement.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JTypeDecl.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JUnaryExpression.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JVariable.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JVariableDeclaration.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JVariableDeclarator.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JWhileStatement.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JWildExpression.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JavaCCMain.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JavaCCParser.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JavaCCParserConstants.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/JavaCCParserTokenManager.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/LookaheadScanner.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/Main.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/Member.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/NControlFlowGraph.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/NEmitter.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/NGraphRegisterAllocator.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/NHIRInstruction.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/NInterval.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/NLIRInstruction.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/NLinearRegisterAllocator.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/NNaiveRegisterAllocator.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/NRegister.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/NRegisterAllocator.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/ParseException.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/Parser.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/SPIM.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/Scanner.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/SimpleCharStream.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/Token.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/TokenInfo.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/TokenMgrError.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/jminusminus/Type.java.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/packages.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-code/stylesheet.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/allclasses-index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/allpackages-index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/constant-values.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/deprecated-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/element-list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/help-doc.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/index-all.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/AmbiguousName.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/ArrayTypeName.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/Boxing.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/ByteClassLoader.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLAnnotation.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLAnnotationDefaultAttribute.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLArithmeticInstruction.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLArrayInstruction.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLAttributeInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLBitInstruction.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLBranchStack.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLBranchTarget.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLCPInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLCodeAttribute.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLComparisonInstruction.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLConstantClassInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLConstantDoubleInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLConstantFieldRefInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLConstantFloatInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLConstantIntegerInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLConstantInterfaceMethodRefInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLConstantLongInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLConstantMemberRefInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLConstantMethodRefInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLConstantNameAndTypeInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLConstantPool.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLConstantStringInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLConstantUtf8Info.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLConstantValueAttribute.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLConstants.Category.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLConstants.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLConversionInstruction.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLDeprecatedAttribute.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLElementValue.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLElementValuePair.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLEmitter.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLEnclosingMethodAttribute.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLException.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLExceptionInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLExceptionsAttribute.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLFieldInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLFieldInstruction.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLFile.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLFlowControlInstruction.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLInnerClassInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLInnerClassesAttribute.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLInputStream.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLInsInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLInstruction.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLLineNumberInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLLineNumberTableAttribute.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLLoadStoreInstruction.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLLocalVariableInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLLocalVariableTableAttribute.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLLocalVariableTypeInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLLocalVariableTypeTableAttribute.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLMemberInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLMethodInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLMethodInstruction.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLMiscInstruction.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLObjectInstruction.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLOutputStream.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLParameterAnnotationInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLPath.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLRuntimeInvisibleAnnotationsAttribute.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLRuntimeInvisibleParameterAnnotationsAttribute.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLRuntimeVisibleAnnotationsAttribute.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLRuntimeVisibleParameterAnnotationsAttribute.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLSignatureAttribute.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLSourceDebugExtensionAttribute.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLSourceFileAttribute.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLStackInstruction.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CLSyntheticAttribute.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CharReader.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/ClassContext.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/CompilationUnitContext.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/Constructor.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/Context.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/Conversions.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/Converter.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/Field.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/I2C.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/IDefn.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/Identity.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/InstructionType.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JALeftShiftAssignOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JALeftShiftOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JARightShiftAssignOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JARightShiftOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JAST.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JAndAssignOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JAndOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JArrayExpression.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JArrayInitializer.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JAssignOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JAssignment.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JBinaryExpression.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JBlock.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JBooleanBinaryExpression.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JBreakStatement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JCastOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JClassDeclaration.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JComparisonExpression.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JCompilationUnit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JComplementOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JConditionalExpression.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JConstructorDeclaration.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JContinueStatement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JDivAssignOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JDivideOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JDoStatement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JEmptyStatement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JEqualOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JExpression.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JFieldDeclaration.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JFieldSelection.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JForStatement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JFormalParameter.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JGreaterEqualOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JGreaterThanOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JIfStatement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JInstanceOfOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JInterfaceDeclaration.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JLRightShiftAssignOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JLRightShiftOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JLessEqualOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JLessThanOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JLhs.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JLiteralBoolean.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JLiteralChar.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JLiteralDouble.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JLiteralInt.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JLiteralLong.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JLiteralNull.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JLiteralString.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JLogicalAndOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JLogicalNotOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JLogicalOrOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JMember.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JMessageExpression.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JMethodDeclaration.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JMinusAssignOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JMultiplyOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JNegateOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JNewArrayOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JNewOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JNotEqualOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JOrAssignOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JOrOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JPlusAssignOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JPlusOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JPostDecrementOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JPostIncrementOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JPreDecrementOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JPreIncrementOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JRemAssignOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JRemainderOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JReturnStatement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JSONElement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JStarAssignOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JStatement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JStatementExpression.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JStringConcatenationOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JSubtractOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JSuper.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JSuperConstruction.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JSwitchStatement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JThis.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JThisConstruction.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JThrowStatement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JTryStatement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JTypeDecl.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JUnaryExpression.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JUnaryPlusOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JVariable.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JVariableDeclaration.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JVariableDeclarator.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JWhileStatement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JWildExpression.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JXorAssignOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JXorOp.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JavaCCMain.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JavaCCParser.JJCalls.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JavaCCParser.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JavaCCParserConstants.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/JavaCCParserTokenManager.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/LocalContext.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/LocalVariableDefn.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/LookaheadScanner.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/Main.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/Member.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/Method.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/MethodContext.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NBasicBlock.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NControlFlowGraph.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NEmitter.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NGraphRegisterAllocator.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NHIRALoad.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NHIRAStore.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NHIRArithmetic.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NHIRConditionalJump.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NHIRGetField.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NHIRGoto.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NHIRInstruction.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NHIRIntConstant.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NHIRInvoke.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NHIRLoadLocal.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NHIRLocal.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NHIRNewArray.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NHIRPhiFunction.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NHIRPutField.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NHIRReturn.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NHIRStringConstant.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NInterval.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NLIRALoad.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NLIRAStore.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NLIRArithmetic.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NLIRConditionalJump.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NLIRGetField.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NLIRGoto.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NLIRInstruction.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NLIRIntConstant.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NLIRInvoke.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NLIRLoad.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NLIRLoadLocal.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NLIRMove.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NLIRNewArray.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NLIRPhiFunction.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NLIRPutField.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NLIRReturn.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NLIRStore.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NLIRStringConstant.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NLinearRegisterAllocator.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NNaiveRegisterAllocator.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NPhysicalRegister.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NRange.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NRegister.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NRegisterAllocator.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NTuple.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NVirtualRegister.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/NarrowReference.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/OffsetFrom.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/ParseException.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/Parser.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/PrettyPrinter.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/SPIM.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/Scanner.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/SimpleCharStream.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/SwitchStatementGroup.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/Token.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/TokenInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/TokenKind.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/TokenMgrError.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/Type.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/TypeName.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/TypeNameDefn.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/UnBoxing.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/package-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jminusminus/package-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/jquery-ui.overrides.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/legal/ASSEMBLY_EXCEPTION" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/legal/jquery.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/legal/jqueryUI.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/member-search-index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/module-search-index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/overview-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/overview-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/package-search-index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/resources/glass.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/resources/x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/script-dir/jquery-3.6.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/script-dir/jquery-ui.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/script-dir/jquery-ui.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/search.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/serialized-form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/stylesheet.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/tag-search-index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jmm-javadoc/type-search-index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/j--.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/Casts.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/Counter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/DayOfWeek.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/DivisorPattern.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/Euclid.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/Factorial.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/Faculty.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/Fibonacci.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/GenExceptionHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/GenFactorial.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/GenHelloWorld.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/GenLookupSwitch.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/GenNHellos.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/GenTableSwitch.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/HelloWorld.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/Inheritance.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/InstanceOf.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/LeapYear.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/MatrixSquared.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/Pascal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/Person.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/PowersOfTwo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/PrimeCounter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/Staff.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/Student.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/SumOfPowers.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/TestScanner.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/AmbiguousName.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/AmbiguousName.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/ArrayTypeName.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/ArrayTypeName.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/Boxing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/Boxing.class" afterDir="false" />
@@ -519,6 +105,9 @@
       <change beforePath="$PROJECT_DIR$/out/jminusminus/JAssignOp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JAssignOp.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/JAssignment.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JAssignment.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/JBinaryExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JBinaryExpression.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/jminusminus/JBitwiseAndOp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JBitwiseAndOp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/jminusminus/JBitwiseOrOp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JBitwiseOrOp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/jminusminus/JBitwiseXorOp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JBitwiseXorOp.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/JBlock.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JBlock.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/JBooleanBinaryExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JBooleanBinaryExpression.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/JBreakStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JBreakStatement.class" afterDir="false" />
@@ -533,7 +122,9 @@
       <change beforePath="$PROJECT_DIR$/out/jminusminus/JDivAssignOp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JDivAssignOp.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/JDivideOp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JDivideOp.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/JDoStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JDoStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/jminusminus/JDoUntilStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JDoUntilStatement.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/JEmptyStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JEmptyStatement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/jminusminus/JEnhancedForStatement.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JEnhancedForStatement.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/JEqualOp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JEqualOp.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/JExpression.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JExpression.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/JFieldDeclaration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JFieldDeclaration.class" afterDir="false" />
@@ -553,6 +144,7 @@
       <change beforePath="$PROJECT_DIR$/out/jminusminus/JLiteralBoolean.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JLiteralBoolean.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/JLiteralChar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JLiteralChar.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/JLiteralDouble.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JLiteralDouble.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/jminusminus/JLiteralFloat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JLiteralFloat.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/JLiteralInt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JLiteralInt.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/JLiteralLong.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JLiteralLong.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/JLiteralNull.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/JLiteralNull.class" afterDir="false" />
@@ -669,7 +261,6 @@
       <change beforePath="$PROJECT_DIR$/out/jminusminus/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/Parser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/PrettyPrinter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/PrettyPrinter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/SPIM.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/SPIM.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/jminusminus/SPIM.s" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/Scanner.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/Scanner.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/SimpleCharStream.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/SimpleCharStream.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/SwitchStatementGroup.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/SwitchStatementGroup.class" afterDir="false" />
@@ -681,14 +272,9 @@
       <change beforePath="$PROJECT_DIR$/out/jminusminus/TypeName.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/TypeName.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/TypeNameDefn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/TypeNameDefn.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/jminusminus/UnBoxing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/jminusminus/UnBoxing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/jminusminus/j--.jj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/jminusminus/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/overview.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jminusminus/JFormalParameter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jminusminus/JFormalParameter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jminusminus/JavaCCParserTokenManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jminusminus/JavaCCParserTokenManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jminusminus/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jminusminus/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jminusminus/Scanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jminusminus/Scanner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jminusminus/TokenInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jminusminus/TokenInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/jvm/TestVarargs.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/jvm/TestVarargs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/tests.iml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/tests.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -716,8 +302,13 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.DivisorPattern.executor": "Run",
     "Application.Main.executor": "Run",
+    "Application.TestConditionalExpressions.executor": "Run",
+    "Application.TestEnhancedForLoop.executor": "Run",
     "Application.TestScanner.executor": "Run",
+    "Application.TestSwitchStatement.executor": "Run",
+    "Application.TestTryCatchFinally.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "work",
@@ -730,27 +321,67 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.45402297",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "configurable.group.appearance",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="TestScanner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="TestScanner" />
+  <component name="RunManager" selected="Application.TestVarargs">
+    <configuration name="TestConditionalExpressions" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TestConditionalExpressions" />
       <module name="tests" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestEnhancedForLoop" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TestEnhancedForLoop" />
+      <module name="tests" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestSwitchStatement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TestSwitchStatement" />
+      <module name="tests" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestTryCatchFinally" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TestTryCatchFinally" />
+      <module name="tests" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestVarargs" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TestVarargs" />
+      <module name="tests" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.TestConditionalExpressions" />
+      <item itemvalue="Application.TestEnhancedForLoop" />
+      <item itemvalue="Application.TestSwitchStatement" />
+      <item itemvalue="Application.TestTryCatchFinally" />
+      <item itemvalue="Application.TestVarargs" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TestScanner" />
+        <item itemvalue="Application.TestVarargs" />
+        <item itemvalue="Application.TestTryCatchFinally" />
+        <item itemvalue="Application.TestSwitchStatement" />
+        <item itemvalue="Application.TestEnhancedForLoop" />
+        <item itemvalue="Application.TestConditionalExpressions" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
+        <option value="jdk-11.0.22-corretto-11.0.22-f644763e9732-6ddbcd97" />
         <option value="jdk-17.0.9-corretto-17.0.9-f644763e9732-203781b8" />
         <option value="jdk-21.0.1-openjdk-21.0.1-f644763e9732-2f79fb23" />
       </set>
@@ -768,7 +399,7 @@
       <workItem from="1707688872143" duration="14674000" />
       <workItem from="1707721054942" duration="73000" />
       <workItem from="1707724224384" duration="6805000" />
-      <workItem from="1707735662517" duration="4244000" />
+      <workItem from="1707735662517" duration="7211000" />
     </task>
     <servers />
   </component>
