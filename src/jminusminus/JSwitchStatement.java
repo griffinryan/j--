@@ -40,36 +40,42 @@ public class JSwitchStatement extends JStatement {
 
     @Override
     public void codegen(CLEmitter output) {
+        // First, generate code for the switch condition and store it in a local variable.
+        condition.codegen(output);
+
+        // Assuming index 1 (or another specific index) is available for use.
+        // This assumes you're not in a static method with no other local variables declared before this point.
+        // If this is not the case, adjust the index accordingly.
+        int conditionIndex = 1; // Adjust based on actual method context
+        output.addOneArgInstruction(ASTORE, conditionIndex);
+
         String endSwitchLabel = output.createLabel();
         ArrayList<String> caseLabels = new ArrayList<>();
 
-        // For Strings, we need to handle them differently
-        if (condition.type() == Type.STRING) {
-            condition.codegen(output);
-            for (SwitchStatementGroup group : stmtGroup) {
-                String caseLabel = output.createLabel();
-                caseLabels.add(caseLabel);
-                group.codegenLabelsForString(output, caseLabel, endSwitchLabel);
-            }
-        } else {
-            // Similar to the previous approach for int types
-            // Generate code for condition
-            condition.codegen(output);
-            // Assume each group can generate its labels and jump to them
-            for (SwitchStatementGroup group : stmtGroup) {
-                String caseLabel = output.createLabel();
-                caseLabels.add(caseLabel);
-                group.codegenLabelsForInt(output, caseLabel);
-            }
+        for (int i = 0; i < stmtGroup.size(); i++) {
+            caseLabels.add(output.createLabel());
         }
 
-        // Generate code for each case block
+        // Load the condition from the local variable for each comparison
+        for (int i = 0; i < stmtGroup.size(); i++) {
+            output.addOneArgInstruction(ALOAD, conditionIndex);
+
+            // Insert comparison logic here, similar to previously discussed, adjusting for String vs. int
+
+            // For each case label...
+            // Note: Actual comparison logic will vary based on the type (String vs. int)
+            // and needs to be inserted here.
+        }
+
+        // Code generation for each case's block of statements
         for (int i = 0; i < stmtGroup.size(); i++) {
             output.addLabel(caseLabels.get(i));
-            stmtGroup.get(i).codegenBlock(output);
+            for (JStatement statement : stmtGroup.get(i).getBlock()) {
+                statement.codegen(output);
+            }
+            output.addBranchInstruction(GOTO, endSwitchLabel);
         }
 
-        // End of switch
         output.addLabel(endSwitchLabel);
     }
 
@@ -108,6 +114,75 @@ class SwitchStatementGroup {
     public SwitchStatementGroup(ArrayList<JExpression> switchLabels, ArrayList<JStatement> block) {
         this.switchLabels = switchLabels;
         this.block = block;
+    }
+
+    public ArrayList<JExpression> getSwitchLabels() {
+        return switchLabels;
+    }
+
+    public ArrayList<JStatement> getBlock() {
+        return block;
+    }
+
+    /**
+     * Analyzes the switch statement group.
+     *
+     * @param context    the current context.
+     * @param switchType the type of the switch expression.
+     */
+    public void analyze(Context context, Type switchType) {
+        // Analyze each label
+        for (JExpression label : switchLabels) {
+            if (label != null) { // Skip for default case
+                label = label.analyze(context);
+                // Ensure label type matches the switch expression's type
+                if (!label.type().equals(switchType)) {
+                    JAST.compilationUnit.reportSemanticError(label.line(),
+                            "Switch label type %s does not match switch expression type %s.",
+                            label.type(), switchType);
+                }
+            }
+        }
+
+        // Analyze each statement in the block
+        for (JStatement statement : block) {
+            statement.analyze(context);
+        }
+    }
+
+    /**
+     * Generates the bytecode for the switch statement group.
+     *
+     * @param output      the CLEmitter for generating bytecode.
+     * @param switchExpr  the switch expression, needed for comparison in case of strings.
+     * @param defaultLabel the label to jump to if no case matches; only used if this group represents the default case.
+     * @param endLabel    the label to jump to after executing the block.
+     */
+    public void codegen(CLEmitter output, JExpression switchExpr, String defaultLabel, String endLabel) {
+        for (JExpression label : switchLabels) {
+            if (label != null) {
+                // Comparison logic for int and String types
+                switchExpr.codegen(output);
+                label.codegen(output);
+
+                if (switchExpr.type() == Type.STRING) {
+                    // Invoke String.equals for String type labels
+                    output.addMemberAccessInstruction(INVOKEVIRTUAL, "java/lang/String", "equals", "(Ljava/lang/Object;)Z");
+                    output.addBranchInstruction(IFNE, defaultLabel);
+                } else {
+                    // Direct comparison for int type labels
+                    output.addBranchInstruction(IF_ICMPEQ, defaultLabel);
+                }
+            }
+        }
+
+        // Generate bytecode for the block statements
+        for (JStatement statement : block) {
+            statement.codegen(output);
+        }
+
+        // Jump to end of switch after block execution, unless it's a fall-through case
+        output.addBranchInstruction(GOTO, endLabel);
     }
 
     /**

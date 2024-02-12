@@ -153,6 +153,7 @@ class JMethodDeclaration extends JAST implements JMember {
                         "Non-void method must have a return statement");
             }
         }
+
         return this;
     }
 
@@ -176,15 +177,32 @@ class JMethodDeclaration extends JAST implements JMember {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void codegen(CLEmitter output) {
-        output.addMethod(mods, name, descriptor, null, false);
+        // Convert the exception type names to their internal JVM names as expected by CLEmitter
+        ArrayList<String> exceptionTypeNames = new ArrayList<>();
+        for (TypeName exception : exceptions) {
+            // Here we assume TypeName::name gives you the fully qualified name.
+            exceptionTypeNames.add(exception.getName().replace('.', '/'));
+        }
+
+        // Add the method with exceptions to the class
+        output.addMethod(mods, name, descriptor, exceptionTypeNames, false);
+
+        // Generate code for the method body
         if (body != null) {
             body.codegen(output);
         }
+
+        // Depending on your returnType, add the appropriate return instruction
+        // This is just a placeholder; adjust according to your actual return type handling
         if (returnType == Type.VOID) {
             output.addNoArgInstruction(RETURN);
+        } else {
+            // Handle other return types appropriately
         }
     }
+
 
     /**
      * {@inheritDoc}

@@ -15,7 +15,7 @@ enum TokenKind {
     EXTENDS("extends"), IF("if"), IMPORT("import"), INSTANCEOF("instanceof"), INT("int"),
     NEW("new"), PACKAGE("package"), PRIVATE("private"), PROTECTED("protected"),
     PUBLIC("public"), RETURN("return"), STATIC("static"), SUPER("super"), THIS("this"),
-    VOID("void"), WHILE("while"),
+    VOID("void"), WHILE("while"), DO("do"), UNTIL("until"),
 
     // Operators.
     ASSIGN("="), DEC("--"), EQUAL("=="), GT(">"), INC("++"), LAND("&&"), LE("<="), LNOT("!"),
