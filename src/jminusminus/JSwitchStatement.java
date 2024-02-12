@@ -111,6 +111,67 @@ class SwitchStatementGroup {
     }
 
     /**
+     * Analyzes the switch statement group.
+     *
+     * @param context    the current context.
+     * @param switchType the type of the switch expression.
+     */
+    public void analyze(Context context, Type switchType) {
+        // Analyze each label
+        for (JExpression label : switchLabels) {
+            if (label != null) { // Skip for default case
+                label = label.analyze(context);
+                // Ensure label type matches the switch expression's type
+                if (!label.type().equals(switchType)) {
+                    JAST.compilationUnit.reportSemanticError(label.line(),
+                            "Switch label type %s does not match switch expression type %s.",
+                            label.type(), switchType);
+                }
+            }
+        }
+
+        // Analyze each statement in the block
+        for (JStatement statement : block) {
+            statement.analyze(context);
+        }
+    }
+
+    /**
+     * Generates the bytecode for the switch statement group.
+     *
+     * @param output      the CLEmitter for generating bytecode.
+     * @param switchExpr  the switch expression, needed for comparison in case of strings.
+     * @param defaultLabel the label to jump to if no case matches; only used if this group represents the default case.
+     * @param endLabel    the label to jump to after executing the block.
+     */
+    public void codegen(CLEmitter output, JExpression switchExpr, String defaultLabel, String endLabel) {
+        for (JExpression label : switchLabels) {
+            if (label != null) {
+                // Comparison logic for int and String types
+                switchExpr.codegen(output);
+                label.codegen(output);
+
+                if (switchExpr.type() == Type.STRING) {
+                    // Invoke String.equals for String type labels
+                    output.addMemberAccessInstruction(INVOKEVIRTUAL, "java/lang/String", "equals", "(Ljava/lang/Object;)Z");
+                    output.addBranchInstruction(IFNE, defaultLabel);
+                } else {
+                    // Direct comparison for int type labels
+                    output.addBranchInstruction(IF_ICMPEQ, defaultLabel);
+                }
+            }
+        }
+
+        // Generate bytecode for the block statements
+        for (JStatement statement : block) {
+            statement.codegen(output);
+        }
+
+        // Jump to end of switch after block execution, unless it's a fall-through case
+        output.addBranchInstruction(GOTO, endLabel);
+    }
+
+    /**
      * Stores information about this switch statement group in JSON format.
      *
      * @param json the JSON emitter.
