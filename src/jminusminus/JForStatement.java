@@ -139,3 +139,123 @@ class JForStatement extends JStatement {
         }
     }
 }
+
+/**
+ * The AST node for an enhanced for-statement.
+ */
+class JEnhancedForStatement extends JStatement {
+    // The loop variable declaration.
+    private JVariableDeclaration declaration;
+
+    // The iterable expression.
+    private JExpression iterable;
+
+    // The body of the loop.
+    private JStatement body;
+
+    /**
+     * Constructs an AST node for an enhanced for-statement.
+     *
+     * @param line         line in which the enhanced for-statement occurs in the source file.
+     * @param declaration  the loop variable declaration.
+     * @param iterable     the iterable expression.
+     * @param body         the body of the loop.
+     */
+    public JEnhancedForStatement(int line, JVariableDeclaration declaration,
+                                 JExpression iterable, JStatement body) {
+        super(line);
+        this.declaration = declaration;
+        this.iterable = iterable;
+        this.body = body;
+    }
+
+    @Override
+    public JAST analyze(Context context) {
+        Context loopContext = new LocalContext(context);
+
+        declaration.analyze(loopContext);
+        iterable = iterable.analyze(loopContext);
+
+        // Check if iterable is an array
+        if (!iterable.type().isArray()) {
+            // Since direct isIterable() check isn't available, you might limit
+            // enhanced for-loops to arrays, or implement your own check here
+            // based on your type system's capabilities.
+            JAST.compilationUnit.reportSemanticError(line,
+                    "The right-hand side of a for-each loop must be an array in this simplified j--.");
+        }
+
+        body.analyze(loopContext);
+
+        return this;
+    }
+
+    @Override
+    public void codegen(CLEmitter output) {
+        // Assume indices for local variables based on your method's layout
+        // For simplicity, let's assume:
+        // 0 - "this" reference (for non-static methods)
+        // 1 - first method argument or first local variable (if no arguments)
+        // Adjust these indices according to your actual method context
+
+        int arrayRefIndex = 1; // Index for the array reference
+        int index = 2; // Index for the loop counter
+
+        // Start: Code to push the array onto the stack
+        iterable.codegen(output);
+        // Store the array reference in a local variable
+        output.addOneArgInstruction(ASTORE, arrayRefIndex);
+
+        // Initialize loop counter to 0
+        output.addNoArgInstruction(ICONST_0);
+        output.addOneArgInstruction(ISTORE, index);
+
+        String test = output.createLabel();
+        String end = output.createLabel();
+
+        // Condition check start
+        output.addLabel(test);
+
+        // Load loop counter and array length, compare them
+        output.addOneArgInstruction(ALOAD, arrayRefIndex);
+        output.addNoArgInstruction(ARRAYLENGTH);
+        output.addOneArgInstruction(ILOAD, index);
+        output.addBranchInstruction(IF_ICMPGE, end);
+
+        // Load the current array element into the loop variable
+        output.addOneArgInstruction(ALOAD, arrayRefIndex);
+        output.addOneArgInstruction(ILOAD, index);
+        output.addNoArgInstruction(AALOAD);
+
+        // Assuming the loop variable is directly after the index
+        int loopVarIndex = 3; // Adjust based on your context
+        output.addOneArgInstruction(ASTORE, loopVarIndex);
+
+        // Body of the loop
+        body.codegen(output);
+
+        // Increment the loop counter
+        output.addIINCInstruction(index, 1);
+
+        // Jump back to the condition check
+        output.addBranchInstruction(GOTO, test);
+
+        // Condition check end
+        output.addLabel(end);
+    }
+
+    @Override
+    public void toJSON(JSONElement json) {
+        JSONElement e = new JSONElement();
+        json.addChild("JEnhancedForStatement:" + line, e);
+        JSONElement eDecl = new JSONElement();
+        e.addChild("Declaration", eDecl);
+        declaration.toJSON(eDecl);
+        JSONElement eIter = new JSONElement();
+        e.addChild("Iterable", eIter);
+        iterable.toJSON(eIter);
+        JSONElement eBody = new JSONElement();
+        e.addChild("Body", eBody);
+        body.toJSON(eBody);
+    }
+}
