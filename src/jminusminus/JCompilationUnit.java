@@ -149,15 +149,23 @@ class JCompilationUnit extends JAST {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public JAST analyze(Context context) {
+        int publicCount = 0;
         for (JAST typeDeclaration : typeDeclarations) {
+            if (typeDeclaration instanceof JClassDeclaration) {
+                JClassDeclaration classDecl = (JClassDeclaration) typeDeclaration;
+                if (classDecl.hasModifier("public")) {
+                    publicCount++;
+                }
+            }
             typeDeclaration.analyze(this.context);
+        }
+        if (publicCount > 1) {
+            reportSemanticError(line, "Only one public class/interface is allowed per compilation unit.");
         }
         return this;
     }
+
 
     /**
      * {@inheritDoc}

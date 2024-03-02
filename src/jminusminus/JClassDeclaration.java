@@ -289,4 +289,9 @@ class JClassDeclaration extends JAST implements JTypeDecl {
 
         output.addNoArgInstruction(RETURN);
     }
+
+    public boolean hasModifier(String modifier) {
+        return mods.contains(modifier);
+    }
+
 }
