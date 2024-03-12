@@ -38,7 +38,13 @@ class JLiteralLong extends JExpression {
      */
     public void codegen(CLEmitter output) {
         long value = Long.parseLong(text);
-        // Example codegen: this might involve LDC or other instructions for long values.
+        if (value == 0L) {
+            output.addNoArgInstruction(LCONST_0);
+        } else if (value == 1L) {
+            output.addNoArgInstruction(LCONST_1);
+        } else {
+            output.addLDCInstruction(value);
+        }
     }
 
     /**
