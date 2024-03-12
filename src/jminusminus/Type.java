@@ -115,6 +115,11 @@ class Type {
     public final static Type CONSTRUCTOR = new Type(null);
 
     /**
+     * A type marker for throwable statements.
+     **/
+    public final static Type THROWABLE = new Type(java.lang.Throwable.class);
+
+    /**
      * This constructor is to keep the compiler happy.
      */
     protected Type() {

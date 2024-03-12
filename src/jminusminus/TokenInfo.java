@@ -17,7 +17,7 @@ enum TokenKind {
     PUBLIC("public"), RETURN("return"), STATIC("static"), SUPER("super"), THIS("this"),
     VOID("void"), WHILE("while"), DO("do"), UNTIL("until"),
     METHOD("method"), THROWS("throws"), FOR("for"), SWITCH("switch"), CASE("case"), DEFAULT("default"),
-    TRY("try"), CATCH("catch"), FINALLY("finally"),
+    TRY("try"), CATCH("catch"), FINALLY("finally"), THROW("THROW"),
 
     // Operators.
     ASSIGN("="), DEC("--"), EQUAL("=="), GT(">"), INC("++"), LAND("&&"), LE("<="), LNOT("!"),

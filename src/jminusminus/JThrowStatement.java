@@ -1,42 +1,47 @@
-// Copyright 2012- Bill Campbell, Swami Iyer and Bahar Akbal-Delibas
-
 package jminusminus;
 
-import static jminusminus.CLConstants.*;
+import static jminusminus.CLConstants.ATHROW;
 
 /**
- * An AST node for a throw-statement.
+ * The AST node for a throw statement.
  */
 class JThrowStatement extends JStatement {
+
+    // The expression representing the exception to throw.
     private JExpression expr;
 
+    /**
+     * Constructs an AST node for a throw statement.
+     *
+     * @param line the line in which the throw statement occurs
+     *             in the source file.
+     * @param expr the expression representing the exception to throw.
+     */
     public JThrowStatement(int line, JExpression expr) {
         super(line);
         this.expr = expr;
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public JStatement analyze(Context context) {
         expr = expr.analyze(context);
-        // Example of a naming convention check, not ideal but a workaround
-        String typeName = expr.type().toString();
-        if (!(typeName.endsWith("Exception") || typeName.endsWith("Error"))) {
-            JAST.compilationUnit.reportSemanticError(line,
-                    "Expression in a throw statement must be an exception type, found: %s",
-                    typeName);
-        }
+        expr.type().mustMatchExpected(line(), Type.THROWABLE);
         return this;
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public void codegen(CLEmitter output) {
-        // Generate code for the expression
         expr.codegen(output);
-        // Throws the exception
         output.addNoArgInstruction(ATHROW);
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public void toJSON(JSONElement json) {
         JSONElement e = new JSONElement();
         json.addChild("JThrowStatement:" + line, e);
