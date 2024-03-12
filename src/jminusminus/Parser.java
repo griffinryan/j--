@@ -379,6 +379,8 @@ public class Parser {
         } else if (have(TRY)) {
             return tryStatement();
         } else if (have(THROWS)) {
+            return throwsStatement();
+        } else if (have(THROW)) {
             return throwStatement();
         } else if (have(DO)) {
             scanner.recordPosition(); // Remember where we are
@@ -1508,13 +1510,22 @@ public class Parser {
         return new JTryStatement(line, tryBlock, catchParameters, catchBlocks, finallyBlock);
     }
 
-    private JStatement throwStatement() {
+    private JStatement throwsStatement() {
         int line = scanner.token().line();
         mustBe(THROWS);
         JExpression expr = expression();
         mustBe(SEMI);
+        return new JThrowsStatement(line, expr);
+    }
+
+    private JStatement throwStatement() {
+        int line = scanner.token().line();
+        mustBe(THROW); // Use THROW instead of THROWS
+        JExpression expr = expression();
+        mustBe(SEMI);
         return new JThrowStatement(line, expr);
     }
+
 
     private JStatement doUntilStatement() {
         int line = scanner.token().line();

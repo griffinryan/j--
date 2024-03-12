@@ -140,7 +140,11 @@ class JLogicalOrOp extends JBooleanBinaryExpression {
      * {@inheritDoc}
      */
     public JExpression analyze(Context context) {
-        // TODO
+        lhs = (JExpression) lhs.analyze(context);
+        rhs = (JExpression) rhs.analyze(context);
+        lhs.type().mustMatchExpected(line(), Type.BOOLEAN);
+        rhs.type().mustMatchExpected(line(), Type.BOOLEAN);
+        type = Type.BOOLEAN;
         return this;
     }
 
@@ -148,8 +152,19 @@ class JLogicalOrOp extends JBooleanBinaryExpression {
      * {@inheritDoc}
      */
     public void codegen(CLEmitter output, String targetLabel, boolean onTrue) {
-        // TODO
+        String endLabel = output.createLabel();
+        if (!onTrue) {
+            // If we're evaluating to false, both conditions must be false, so we evaluate both
+            lhs.codegen(output, endLabel, true); // If LHS is true, skip evaluating RHS
+            rhs.codegen(output, targetLabel, false);
+        } else {
+            // If we're evaluating to true, either condition being true should jump to the target
+            lhs.codegen(output, targetLabel, true);
+            rhs.codegen(output, targetLabel, true);
+        }
+        output.addLabel(endLabel);
     }
+
 }
 
 /**
@@ -172,14 +187,30 @@ class JNotEqualOp extends JBooleanBinaryExpression {
      * {@inheritDoc}
      */
     public JExpression analyze(Context context) {
-        // TODO
+        lhs = (JExpression) lhs.analyze(context);
+        rhs = (JExpression) rhs.analyze(context);
+        if (!lhs.type().equals(rhs.type())) {
+            JAST.compilationUnit.reportSemanticError(line,
+                    "Operands to != have different types: %s, %s", lhs.type(), rhs.type());
+        }
+        type = Type.BOOLEAN;
         return this;
     }
+
 
     /**
      * {@inheritDoc}
      */
     public void codegen(CLEmitter output, String targetLabel, boolean onTrue) {
-        // TODO
+        lhs.codegen(output);
+        rhs.codegen(output);
+        if (lhs.type().isReference()) {
+            // Use IF_ACMPNE for reference types
+            output.addBranchInstruction(onTrue ? IF_ACMPNE : IF_ACMPEQ, targetLabel);
+        } else {
+            // Use IF_ICMPNE for primitive types
+            output.addBranchInstruction(onTrue ? IF_ICMPNE : IF_ICMPEQ, targetLabel);
+        }
     }
+
 }
