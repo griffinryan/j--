@@ -381,7 +381,22 @@ public class Parser {
         } else if (have(THROWS)) {
             return throwStatement();
         } else if (have(DO)) {
-            return doUntilStatement();
+            scanner.recordPosition(); // Remember where we are
+            JBlock body = block(); // Directly parse the body
+            if (have(WHILE)) {
+                // It's a do-while statement
+                JExpression test = parExpression();
+                mustBe(SEMI);
+                return new JDoWhileStatement(line, body, test);
+            } else if (have(UNTIL)) {
+                // It's a do-until statement, using your existing method
+                scanner.returnToPosition(); // Reset to where we remembered
+                return doUntilStatement(); // Assuming doUntilStatement is already defined
+            } else {
+                // Error handling: expected WHILE or UNTIL after the DO block
+                reportParserError("Expected 'while' or 'until' after 'do' block");
+                return null; // Or handle the error more gracefully
+            }
         } else {
             // Must be a statementExpression.
             JStatement statement = statementExpression();
@@ -1510,18 +1525,5 @@ public class Parser {
         mustBe(SEMI);
         return new JDoUntilStatement(line, body, test);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
